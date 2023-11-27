@@ -2,8 +2,20 @@
 
 //object literal of the current page
 const  global = {
-  currentPage: window.location.pathname
+  currentPage: window.location.pathname,
+  // search: {
+  //   term: '',
+  //   type: '',
+  //   page: 1,
+  //   totalPages: 1,
+  //   totalResults: 0,
+  // },
+api: {
+  apiKey: 'e9e28b84a96b8dd04a7b615b6c1afd3e',
+  apiURL: 'https://api.themoviedb.org/3/',
+},
 };
+
 
 
 // Display 20 most popular movies
@@ -236,9 +248,9 @@ function displayBackgroundImage(type, backgroundPath) {
   overlayDiv.style.opacity = "0.1";
   
   if (type === "movie") {
-  document.querySelector("#movie-details").appendChild(overlayDiv);
+  document.querySelector('#movie-details').appendChild(overlayDiv);
   } else {
-  document.querySelector("#show-details").appendChild(overlayDiv);
+  document.querySelector('#show-details').appendChild(overlayDiv);
   }
 }
 
@@ -248,8 +260,8 @@ function displayBackgroundImage(type, backgroundPath) {
 async function fetchAPIData(endpoint) {
   // Register your key at https://www.themovidedb.org/settings/api and enter here
   // Only use this for development or very small projects. You should store your key and make requests from a server
-  const API_KEY = 'e9e28b84a96b8dd04a7b615b6c1afd3e';
-  const API_URL = 'https://api.themoviedb.org/3/';
+  const API_KEY = global.api.apiKey;
+  const API_URL = global.api.apiURL;
 
   showSpinner();
 
@@ -302,7 +314,6 @@ function init() {
       displayShowDetails();
       break;
     case '/search.html':
-      search();
       break;
   }
 
